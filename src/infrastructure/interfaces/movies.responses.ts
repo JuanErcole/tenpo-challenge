@@ -35,7 +35,7 @@ export interface NowMovieApiResponse {
 }
 
 // response of the upcoming movies
-export interface UpcomingMovieApiResponse extends NowMovieApiResponse {}
+export interface PopularMovieApiResponse extends NowMovieApiResponse {}
 
 // response of the top rated movies
 export interface TopRatedMovieApiResponse {
