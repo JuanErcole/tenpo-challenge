@@ -1,4 +1,4 @@
-import { ORIGINAL_LANGUAGE } from "../../infrastructure/interfaces/movies";
+import { ORIGINAL_LANGUAGE } from "../../infrastructure/interfaces/movies.responses";
 import { AxiosAdapter } from "./http/axios.adapter";
 
 export const movieFetcher = new AxiosAdapter({

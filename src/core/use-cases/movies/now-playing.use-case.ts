@@ -1,5 +1,6 @@
 import {HttpAdapter} from '../../../config/adapters/http/http.adapter';
-import {NowMovieApiResponse} from '../../../infrastructure/interfaces/movies';
+import {NowMovieApiResponse} from '../../../infrastructure/interfaces/movies.responses';
+import { MovieMapper } from '../../../infrastructure/mappers/movie.mapper';
 import {Movie} from '../../models/movie.model';
 
 export const moviesNowPlayingUseCase = async (
@@ -8,9 +9,9 @@ export const moviesNowPlayingUseCase = async (
   try {
     const nowPlaying = await fetcher.get<NowMovieApiResponse>('/now_playing');
 
-    console.log({nowPlaying});
+    const movies = nowPlaying.results.map(MovieMapper.fromMovieResultToModel);
 
-    return [];
+    return movies;
   } catch (error) {
     throw new Error(`Error getting now playing: ${error}`);
   }

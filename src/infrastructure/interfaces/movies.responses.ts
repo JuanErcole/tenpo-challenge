@@ -1,10 +1,14 @@
+export enum ORIGINAL_LANGUAGE {
+  ES = 'es',
+  EN = 'en',
+}
 
 interface Dates {
   maximum: string;
   minimum: string;
 }
 
-interface Movie {
+export interface Results {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -21,15 +25,23 @@ interface Movie {
   vote_count: number;
 }
 
+// response of the now playing movies
 export interface NowMovieApiResponse {
   dates: Dates;
   page: number;
-  results: Movie[];
+  results: Results[];
   total_pages: number;
   total_results: number;
 }
 
-export enum ORIGINAL_LANGUAGE {
-  ES = 'es',
-  EN = 'en',
+// response of the upcoming movies
+export interface UpcomingMovieApiResponse extends NowMovieApiResponse {}
+
+// response of the top rated movies
+export interface TopRatedMovieApiResponse {
+  page: number;
+  results: Results[];
+  total_pages: number;
+  total_results: number;
 }
+

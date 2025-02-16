@@ -1,17 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useState, useEffect} from 'react';
-
-interface AuthContextType {
-  isAuthenticated: boolean;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-}
-
-const initialContext: AuthContextType = {
-  isAuthenticated: false,
-  login: async () => {},
-  logout: () => {},
-};
+import { initialContext } from './state';
+import { AuthContextType } from './types';
 
 export const AuthContext = createContext<AuthContextType>(initialContext);
 
