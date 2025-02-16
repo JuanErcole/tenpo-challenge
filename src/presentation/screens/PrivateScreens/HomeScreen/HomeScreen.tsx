@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {useAuth, useMovies} from '../../../hooks';
 import {ScrollView} from 'react-native-gesture-handler';
 import {PosterCarousel, HorizontalCarousel} from '../../../components';
@@ -23,7 +23,13 @@ export const HomeScreen = () => {
   return (
     <ScrollView>
       <View style={{marginTop: 20}}>
-        <PosterCarousel movies={nowPlaying} />
+        <View style={styles.headerWrapper}>
+          <Text style={styles.title}>NETFLIX</Text>
+          <Pressable style={styles.Buttonlogout} onPress={() => auth.logout()}>
+            <Text style={styles.ButtonlogoutText}>Salir</Text>
+          </Pressable>
+        </View>
+        <PosterCarousel movies={nowPlaying} title="20 nuevos estrenos" />
 
         <HorizontalCarousel
           title="Mejores calificadas"
@@ -40,3 +46,25 @@ export const HomeScreen = () => {
     </ScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  headerWrapper: {
+    paddingHorizontal: 16,
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 25,
+    color: 'red',
+  },
+  Buttonlogout: {
+    padding: 5,
+    borderRadius: 5,
+  },
+  ButtonlogoutText: {
+    fontSize: 16,
+    color: 'red',
+  },
+});
