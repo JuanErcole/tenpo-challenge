@@ -2,6 +2,7 @@ import {View, Text, StyleSheet, Pressable} from 'react-native';
 import {useAuth, useMovies} from '../../../hooks';
 import {ScrollView} from 'react-native-gesture-handler';
 import {PosterCarousel, HorizontalCarousel} from '../../../components';
+import {FullScreenLoader} from '../../../components/FullScreenLoader/FullScreenLoader';
 
 export const HomeScreen = () => {
   const {isLoading, nowPlaying, topRated, popular, popularNextPage, topRatedNextPage} =
@@ -9,7 +10,7 @@ export const HomeScreen = () => {
   const auth = useAuth();
 
   if (isLoading) {
-    return <Text>Cargando...</Text>;
+    return <FullScreenLoader />;
   }
 
   const loadNextPageTopRated = () => {

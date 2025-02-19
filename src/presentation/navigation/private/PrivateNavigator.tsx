@@ -10,7 +10,7 @@ export default function PrivateNavigator() {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={HomeNavigator} />
+      <Stack.Screen name="HomeNavigator" component={HomeNavigator} />
     </Stack.Navigator>
   );
 }
