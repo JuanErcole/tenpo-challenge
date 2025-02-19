@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {createContext, useState, useEffect} from 'react';
-import { initialContext } from './state';
-import { AuthContextType } from './types';
+import {initialContext} from './state';
+import {AuthContextType, FAKE_TOKEN, TOKEN_NAME} from './types';
 
 export const AuthContext = createContext<AuthContextType>(initialContext);
 
@@ -10,7 +10,7 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   useEffect(() => {
     const loadToken = async () => {
-      const token = await AsyncStorage.getItem('token');
+      const token = await AsyncStorage.getItem(TOKEN_NAME);
       if (token) setIsAuthenticated(true);
     };
     loadToken();
@@ -19,13 +19,13 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
   const login = async (email: string, password: string) => {
     if (!email || !password) return;
 
-    const fakeToken = 'fake-jwt-token';
-    await AsyncStorage.setItem('token', fakeToken);
+    const token = FAKE_TOKEN;
+    await AsyncStorage.setItem(TOKEN_NAME, token);
     setIsAuthenticated(true);
   };
 
   const logout = async () => {
-    await AsyncStorage.removeItem('token');
+    await AsyncStorage.removeItem(TOKEN_NAME);
     setIsAuthenticated(false);
   };
 
